@@ -4,9 +4,9 @@
       <div class="col-12 col-lg">
           <img class="w-100" src="./image/products/health5.jpeg" alt="">
       </div>
-      <div class="col-12 col-lg px-2 pt-2 px-4 mt-5 mt-lg-0">
+      <div class="col-12 col-lg  pt-2 px-4 mt-5 mt-lg-0">
           <p class="fs-5">
-              Welcome to Elite Corporation.
+              <span>Welcome to Elite Corporation.</span>
               Elite Corporation is mainly supplying health, cosmetic and spice products all over Bangladesh. <br>
           <p>Each product is hygienic and chemical free.Organic products are mainly needed to keep our body
               healthy,

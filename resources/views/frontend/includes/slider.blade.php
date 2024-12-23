@@ -1,30 +1,35 @@
 @php
     $sliders = \App\Models\Slider::all();
     $collection = \App\Models\AuthImageVideo::all();
-    
+
 @endphp
 <section>
     <div class=" Banner">
         <!--<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">-->
         <!--    <div class="carousel-inner">-->
-        <!--        @foreach ($sliders as $slider)-->
+        <!--        @foreach ($sliders as $slider)
+-->
         <!--            <div class="carousel-item active">-->
         <!--                <img src="{{ $slider->image }}" class="d-block w-100 slider-img disable-right-click-image" alt="...">-->
         <!--            </div>-->
-        <!--        @endforeach-->
+        <!--
+@endforeach-->
         <!--    </div>-->
         <!--</div>-->
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-    <div class="carousel-inner">
-        @foreach ($sliders as $key => $slider)
-            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                <img src="{{ $slider->image }}" class="d-block w-100 slider-img disable-right-click-image" alt="...">
+            <div class="carousel-inner">
+                @foreach ($sliders as $key => $slider)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <img src="{{ $slider->image }}"
+                            class="d-block w-100  slider-img disable-right-click-image "
+                            width="100%" height="100%" alt="...">
+                        {{-- <img src={{ asset('assets/img/banner.jpg') }} class="img-fluid" width="100%" height="100%" /> --}}
+                    </div>
+                @endforeach
             </div>
-        @endforeach
-    </div>
-</div>
-  
-    <div class="Search-details me-1 me-lg-3">
+        </div>
+
+        <div class="Search-details me-1 me-lg-3">
             @if (Auth::check())
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -36,45 +41,97 @@
             @else
                 <div class="d-flex ">
                     <div class="ms-2">
-                        <a href="{{ route('user-register') }}" class="btn btn-secondary dropbtn-bg">Customer Sign Up </a>
+                        <a href="{{ route('user-register') }}" class="btn btn-secondary dropbtn-bg">Customer Sign Up
+                        </a>
                         <a href="{{ route('user-login') }}" class="btn btn-secondary dropbtn-bg">Login</a>
-                      
+
                     </div>
                 </div>
             @endif
         </div>
     </div>
-   <!--<div class="container mt-3 text-center">-->
-   <!--     @if (Auth::check())-->
-   <!--         <div></div>-->
-   <!--     @else-->
-   <!--         <a href="{{ route('seller-register') }}" class="btn btn-secondary dropbtn-bg">Seller Sign Up </a>-->
-   <!--         <a href="{{ route('login') }}" class="btn btn-secondary dropbtn-bg">Seller Login</a>-->
-            
-   <!--     @endif-->
-   <!-- </div>-->
-    <section class=" container">
-                  <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 shadow p-4 rounded">
-                    <h4 class="fs-4 mb-4">প্রোডাক্টটি অরজিনাল কিনা যাচাই করুন।</h4>
-                    <p class="fs-5 text-danger">আপনার পণ্যে থাকা ৮ ডিজিটের কোড, ছোট হাতের এবং বড় হাতের কোডটি সঠিকভাবে দিয়ে যাচাই করুন।</p>
+    <!--<div class="container mt-3 text-center">-->
+    <!--     @if (Auth::check())
+-->
+    <!--         <div></div>-->
+<!--     @else-->
+    <!--         <a href="{{ route('seller-register') }}" class="btn btn-secondary dropbtn-bg">Seller Sign Up </a>-->
+    <!--         <a href="{{ route('login') }}" class="btn btn-secondary dropbtn-bg">Seller Login</a>-->
 
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="product_code" id="product-code" required>
-                        </div>
-                        <button class="btn btn-dark mt-3" id="submitButton">Submit</button>
+    <!--
+@endif-->
+    <!-- </div>-->
+    <section class=" container text-start border p-4 rounded-3 my-5">
+
+
+        <h4 class="fw-bold my-4 fs-4 mb-4 d-block">প্রোডাক্টটি অরজিনাল কিনা যাচাই করুন।
+            <p class="bg-warning" style="height: 2px; width: 100%; margin-top: 10px;"></p>
+        </h4>
+
+        <div class="row my-4">
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class=" mt-5">
+                    {{-- <div class="row justify-content-center">
+                        <div class="col-lg-6 shadow p-4 rounded"> --}}
+
+                    <p class="fs-5 text-start text-danger">আপনার পণ্যে থাকা ৮ ডিজিটের কোড, ছোট হাতের এবং বড় হাতের
+                        কোডটি
+                        সঠিকভাবে
+                        দিয়ে যাচাই করুন।</p>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="product_code" id="product-code" required>
+                    </div>
+                    <button class="btn btn-dark mt-3" id="submitButton">Submit</button>
                     <div class="rounded bg-primary">
                         <p class="mt-3 text-white p-2">অরিজিনাল পণ্য কিনা যাচাই করুন।</p>
                     </div>
                     <div id="container">
                     </div>
-         
+
+                    <p class="mt-3 fs-5">নোট: কোডটি শুধুমাত্র একবার ব্যবহার করা যায়</p>
+                    {{-- </div>
+                    </div> --}}
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-12">
+                @foreach ($collection as $item)
+                    <div class="row p-2 p-lg-5">
+                        <div class="col-12 col-lg-6 mb-4 mb-lg-0">
+                            <img class="w-100 h-100 disable-right-click-image" src="{{ $item->image }}" alt="">
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <iframe class="w-100 h-100" src="{{ $item->video_url }}" title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen></iframe>
+
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        {{-- <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 shadow p-4 rounded">
+                    <h4 class="fs-4 mb-4">প্রোডাক্টটি অরজিনাল কিনা যাচাই করুন।</h4>
+                    <p class="fs-5 text-danger">আপনার পণ্যে থাকা ৮ ডিজিটের কোড, ছোট হাতের এবং বড় হাতের কোডটি সঠিকভাবে
+                        দিয়ে যাচাই করুন।</p>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="product_code" id="product-code" required>
+                    </div>
+                    <button class="btn btn-dark mt-3" id="submitButton">Submit</button>
+                    <div class="rounded bg-primary">
+                        <p class="mt-3 text-white p-2">অরিজিনাল পণ্য কিনা যাচাই করুন।</p>
+                    </div>
+                    <div id="container">
+                    </div>
+
                     <p class="mt-3 fs-5">নোট: কোডটি শুধুমাত্র একবার ব্যবহার করা যায়</p>
                 </div>
             </div>
-        </div>
-        @foreach ($collection as $item)
+        </div> --}}
+        {{-- @foreach ($collection as $item)
             <div class="row p-2 p-lg-5">
                 <div class="col-12 col-lg-6 mb-4 mb-lg-0">
                     <img class="w-100 h-100 disable-right-click-image" src="{{ $item->image }}" alt="">
@@ -87,7 +144,7 @@
 
                 </div>
             </div>
-        @endforeach
+        @endforeach --}}
     </section>
 
 </section>
@@ -155,14 +212,48 @@
         });
     </script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var images = document.getElementsByClassName('disable-right-click-image');
-        
-        for (var i = 0; i < images.length; i++) {
-            images[i].addEventListener('contextmenu', function(event) {
-                event.preventDefault(); // Prevent the default right-click context menu
+        document.addEventListener('DOMContentLoaded', function() {
+            var images = document.getElementsByClassName('disable-right-click-image');
+
+            for (var i = 0; i < images.length; i++) {
+                images[i].addEventListener('contextmenu', function(event) {
+                    event.preventDefault(); // Prevent the default right-click context menu
+                });
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Initialize Swiper
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                loop: false,
+
+                pagination: {
+                    el: '.swiper-pagination',
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                // Breakpoints for responsive slides
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        spaceBetween: 40,
+                    },
+                },
+
+                autoHeight: true, // Automatically adjusts height
             });
-        }
-    });
-</script>
+        });
+    </script>
 @endsection
