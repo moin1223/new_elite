@@ -16,17 +16,25 @@
         z-index: 1;
     }
 
+    .formBox {
+        width: auto !important;
+    }
+
     /* Mobile responsive search form */
-    @media screen and (min-width: 350px) and (max-width: 412px) {
+    @media screen and (min-width: 350px) and (max-width: 520px) {
         .serach {
             margin-left: 30px;
+        }
+
+        .formBox {
+            width: 100% !important;
         }
     }
 </style>
 
 <header class=" sticky-top sm-static overflow-hidden ">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-md fw-bold shadow bg-white sticky-top z-3">
+    <nav class="navbar navbar-expand-md fw-bold shadow bg-white sticky-top z-3 d-flex justify-content-between">
         <div class="d-flex align-items-center order-first">
             <a href="{{ route('home-page') }}"
                 class="navbar-brand fs-3 me-1 me-md-2 me-lg-5 ms-1 ms-md-2 ms-lg-4 mb-1 mb-lg-3">
@@ -35,20 +43,20 @@
         </div>
 
         <!-- Mobile menu button -->
-        <button class="btn bg-warning text-white d-block d-md-none me-2 me-lg-3 order-2 order-sm-3" type="button"
+        <button class="btn bg-warning text-white d-block d-lg-none me-2 me-lg-3 order-2 order-md-3" type="button"
             data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
             aria-controls="offcanvasWithBothOptions">
             <i class='bx bx-menu bx-sm'></i>
         </button>
 
         <!-- Search Form -->
-        <form action="{{ route('seller-search') }}" method="POST" class="order-sm-0 order-3">
+        <form action="{{ route('seller-search') }}" method="POST" class="order-sm-0 order-3 formBox ">
             @csrf
-            <div class="container mt-4 ms-1 serach">
+            <div class="container mt-4 ms-1 serach  ">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="mobile_number" value="88"
-                        placeholder="Enter authorized seller number" aria-label="Search" aria-describedby="basic-addon2"
-                        style="width: 200px;">
+                        placeholder="Enter authorized seller number" aria-label="Search"
+                        aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn black-button" type="submit">Search</button>
                     </div>
@@ -66,45 +74,45 @@
         </form>
 
         <!-- Navbar Links -->
-        <div class="collapse navbar-collapse" id="btn">
-            <ul class="navbar-nav ms-auto ul-bg">
+
+        <ul class="navbar-nav d-none  d-lg-flex d-flex-col ms-auto ul-bg">
+            <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
+                <a href="{{ route('home-page') }}" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
+                <a href="{{ route('check-authenticity') }}" class="nav-link">Check authenticity</a>
+            </li>
+            <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
+                <a href="{{ route('authorized-prtbners') }}" class="nav-link">Authorized Partner</a>
+            </li>
+            @if (Auth::check())
                 <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                    <a href="{{ route('home-page') }}" class="nav-link">Home</a>
+                    <a href="{{ route('reseller') }}" class="nav-link">Reseller</a>
                 </li>
                 <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                    <a href="{{ route('check-authenticity') }}" class="nav-link">Check authenticity</a>
+                    <a href="{{ route('ব্যবহারবিধি') }}" class="nav-link">ব্যবহারবিধি</a>
                 </li>
+            @endif
+            @isset($products)
                 <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                    <a href="{{ route('authorized-prtbners') }}" class="nav-link">Authorized Partner</a>
+                    <a href="#products" class="nav-link">Products</a>
                 </li>
-                @if (Auth::check())
-                    <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                        <a href="{{ route('reseller') }}" class="nav-link">Reseller</a>
-                    </li>
-                    <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                        <a href="{{ route('ব্যবহারবিধি') }}" class="nav-link">ব্যবহারবিধি</a>
-                    </li>
-                @endif
-                @isset($products)
-                    <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                        <a href="#products" class="nav-link">Products</a>
-                    </li>
-                @else
-                    <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                        <a href="{{ route('home-page') }}" class="nav-link">Products</a>
-                    </li>
-                @endisset
-                @isset($products)
-                    <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                        <a href="#about" class="nav-link">About us</a>
-                    </li>
-                @else
-                    <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
-                        <a href="{{ route('home-page') }}" class="nav-link">About us</a>
-                    </li>
-                @endisset
-            </ul>
-        </div>
+            @else
+                <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
+                    <a href="{{ route('home-page') }}" class="nav-link">Products</a>
+                </li>
+            @endisset
+            @isset($products)
+                <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
+                    <a href="#about" class="nav-link">About us</a>
+                </li>
+            @else
+                <li class="nav-item mx-3 mx-lg-2 fs-lg-5">
+                    <a href="{{ route('home-page') }}" class="nav-link">About us</a>
+                </li>
+            @endisset
+        </ul>
+
     </nav>
 </header>
 
