@@ -20,8 +20,8 @@ class UserSeeder extends Seeder
                     'id' => '1',
                     'first_name' => 'MD.',
                     'last_name' => 'Kayes',
-                    'email' => 'gmit@elitecorpo.com',
-                    'password' => Hash::make('elitecorpo230928'),
+                    'email' => 'admin@app.com',
+                    'password' => Hash::make('password'),
                     'role' => 'admin',
                 ),
 
