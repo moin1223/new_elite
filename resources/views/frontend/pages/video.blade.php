@@ -73,6 +73,17 @@
 
                 </div>
             </div>
+            <div class="col-md-4 col-12 mb-4">
+                <div class="video-container">
+                    <iframe width="300" height="150" src="https://www.youtube.com/embed/oFvzPgGVZKU"
+                title="মেহজাবিনের সু-স্বাস্থ্যের গোপন রেসিপি- Natural Health Care Supplement | Elite Corporation"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                </div>
+            </div>
+            
             {{-- @endforeach --}}
         </div>
     </section>
