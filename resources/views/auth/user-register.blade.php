@@ -167,6 +167,9 @@
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+
+
+                            
                             <div class="mb-3">
                                 <label for="email" class="d-block text-uppercase mb-2">Password <span
                                     class="text-danger font-bold">*</span></label>
@@ -257,3 +260,5 @@
         });
     </script>
 @endsection
+
+{{-- test --}}
